@@ -6,6 +6,8 @@ Static single-page portfolio, dark elegant. Sticky numbered nav 01-06, RPG-inven
 - **SEGERA** (grey, sealed) = projects with no live link, no fake URLs
 - **CONTOH** (purple) = clearly-labelled placeholder cards (Content & Appearances section)
 
+Audited stats shown: 24 public repos (GitHub API), 15 live URLs (HTTP-200 verified), 0 PII exposed.
+
 No PII. No invented numbers. All links HTTP-audited.
 
 ## Stack

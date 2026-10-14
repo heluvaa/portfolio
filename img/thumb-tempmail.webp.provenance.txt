@@ -1,0 +1,1 @@
+Headless-Chromium screenshot of https://tempmail-inbox.vercel.app (HTTP-200 verified) 2026-10-14; crop 16:10, WebP q82.

@@ -48,17 +48,19 @@
     function toggle() {
       var open = !more.hidden;
       more.hidden = open;
-      card.setAttribute("aria-expanded", String(!open));
+      bar.setAttribute("aria-expanded", String(!open));
+      bar.textContent = open ? "INSPECT +" : "COLLAPSE \u2212";
     }
     var bar = document.createElement("button");
     bar.type = "button";
     bar.className = "inspect-btn";
     bar.textContent = "INSPECT +";
-    bar.setAttribute("aria-controls", "more-" + Math.random().toString(36).slice(2, 8));
-    more.id = bar.getAttribute("aria-controls");
+    var pid = "more-" + Math.random().toString(36).slice(2, 8);
+    bar.setAttribute("aria-controls", pid);
+    bar.setAttribute("aria-expanded", "false");
+    more.id = pid;
     bar.addEventListener("click", toggle);
     card.querySelector(".loot-body").insertBefore(bar, card.querySelector(".loot-links"));
-    card.setAttribute("aria-expanded", "false");
   });
 
   /* ---- 4. attribute numbers count up once (data, not decoration) ---- */

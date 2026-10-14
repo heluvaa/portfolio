@@ -16,7 +16,15 @@ colors:
   live-green: "#57e39a"
   live-green-deep: "#1d5c3c"
   sealed-steel: "#66707f"
+  sealed-text: "#9aa5b6"
   unidentified-violet: "#b48ad6"
+  unidentified-violet-deep: "#4a3d5c"
+  unidentified-violet-edge: "#3d3348"
+  on-gold: "#14100a"
+  gold-hover: "#f0c662"
+  shadow-strong: "rgba(0,0,0,.7)"
+  shadow-soft: "rgba(0,0,0,.8)"
+  shadow-deep: "rgba(0,0,0,.85)"
 typography:
   display:
     fontFamily: "Chakra Petch, system-ui, sans-serif"
@@ -44,6 +52,56 @@ typography:
     fontSize: "0.76rem"
     fontWeight: 700
     letterSpacing: "0.08em"
+  label-sm:
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: "0.75rem"
+    fontWeight: 500
+    letterSpacing: "0.04em"
+  body-sm:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "0.88rem"
+    fontWeight: 400
+    lineHeight: 1.6
+  body-md:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  body-lg:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "1.05rem"
+    fontWeight: 500
+    lineHeight: 1.5
+  title-sm:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "1.15rem"
+    fontWeight: 700
+    lineHeight: 1.2
+  title:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 700
+    lineHeight: 1.2
+  loot-title:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 700
+    lineHeight: 1.15
+  stat:
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: "1.5rem"
+    fontWeight: 700
+    lineHeight: 1.1
+  lead:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "clamp(1.15rem, 3.4vw, 1.45rem)"
+    fontWeight: 600
+    lineHeight: 1.35
+  display-sm:
+    fontFamily: "Chakra Petch, system-ui, sans-serif"
+    fontSize: "clamp(2.4rem, 6vw, 3rem)"
+    fontWeight: 700
+    lineHeight: 1.15"
 rounded:
   notch-panel: "14px notch clip"
   notch-chip: "8px notch clip"
@@ -108,14 +166,15 @@ The palette is a monochrome obsidian field interrupted by four semantically load
 - **Live Green Deep** (#1d5c3c): the border under a LIVE capsule and the GitHub button's hover ring.
 
 ### Tertiary
-- **Sealed Steel** (#66707f): the SEGERA tier. Dashed-bordered slots, grayscale thumbnails, and every "not yet" state. The colour's job is to look deliberately closed.
+- **Sealed Steel** (#66707f): the SEGERA tier's chrome only — dashed borders, capsule swatches, grayscale thumbnail cast. Never a text colour.
+- **Sealed Text** (#9aa5b6): the SEGERA/rail text — 7.9:1 on obsidian ground, 6.6:1 on the capsule blend. Keeps the honest 'sealed' semantics legible while the steel chrome stays inert-looking.
 - **Unidentified Violet** (#b48ad6): reserved exclusively for the Content & Appearances placeholders so no visitor can confuse them with real work.
 
 ### Neutral
-- **Obsidian Ground** (#0a0c10): page field, with a single radial gold tint at the top. Row/detent grid removed to keep the surface calm.
+- **Obsidian Ground** (#0a0c10): page field carrying one radial gold tint at the top. No grid texture — it read as category-slop and was removed.
 - **Panel** (#12161e) over **Panel Raised** (#181d27): the gradient every container uses, top-lighter.
 - **Edge** (#2a3140) and **Edge Soft** (#1f2531): structural hairlines; Edge Soft for container borders, Edge for separators inside panels.
-- **Text** (#e8ebf2), **Text Secondary** (#aab3c5), **Text Tertiary** (#8a93a6): the three-step text ramp, all above 4.5:1 on Panel.
+- **Text** (#e8ebf2), **Text Secondary** (#aab3c5), **Text Tertiary** (#8a93a6): the three-step text ramp, all above 4.5:1 on Panel. Nothing functional is ever set in Sealed Steel.
 
 ### Named Rules
 **The Rarity-Is-Evidence Rule.** A tier colour may only be applied to an item whose status was verified by an audit. Gold requires a live URL. Green requires an HTTP 200. Grey is the default for anything unverified, and grey is never upgraded for aesthetics.
@@ -131,16 +190,24 @@ The palette is a monochrome obsidian field interrupted by four semantically load
 **Character:** A technical sans with cut corners in its letterforms pairs with a coding mono. The display face carries a game-interface bearing without tipping into novelty; the mono makes every number, status, and identifier read as data rather than prose.
 
 ### Hierarchy
-- **Display** (700, `clamp(2.4rem, 8.5vw, 3.6rem)`, 1.15): the hero name only, followed by a blinking gold block caret.
+Size steps are fixed, not invented per component: the ramp below is the entire allowed set.
+
+- **Display** (700, `clamp(2.4rem, 8.5vw, 3.6rem)`; `display-sm` `clamp(2.4rem, 6vw, 3rem)` solo at ≥780px, 1.15): the hero name, followed by a blinking gold block caret.
+- **Section head** (700, `clamp(1.6rem, 4.5vw, 2.25rem)`, 1.15): headline step, listed here for completeness.
 - **Headline** (700, `clamp(1.6rem, 4.5vw, 2.25rem)`, 1.15): section titles, each preceded by a gold slot-code frame.
-- **Title** (700, 1.02–1.7rem, 1.2): project names and skill-node headings.
-- **Body** (400, 16px, 1.55, max 72ch): descriptions, capped at 64ch in supporting blocks.
-- **Label** (700, 0.74–0.76rem, 0.04–0.08em, uppercase for statuses): chips, statuses, slot codes, attribute notes, nav links.
+- **Lead** (600, `clamp(1.15rem, 3.4vw, 1.45rem)`, 1.35): the About paragraph. `loot-title` (700, 1.5rem) for a Selected Work project name.
+- **Title** (700, 1.25rem / 1.15rem, 1.2): project names and skill-node headings at card scale.
+- **Body** (400, 16px, 1.55, max 72ch): descriptions, capped at 64ch in supporting blocks. Steps: 16px base, 1.05rem sub-head, .95rem supporting copy, .88rem list rows, .82rem trailing note.
+- **Stat** (700, 1.5rem, tabular numerals): the three hero attributes.
+- **Label** (700, .76rem, 0.08em): nav links, statuses, rarity flags. `label-sm` (500, .75rem = 12px, 0.04em): chips, slot codes, attribute notes, source links — the floor for any text that carries information.
+- **Tagline** (`clamp(.88rem, 2.6vw, 1rem)`, 0.045em): the caps role line on the hero.
 
 ### Named Rules
 **The Two-Voice Rule.** Prose is set in Chakra Petch. Anything that is a value, an identifier, a status, or a measurement is set in JetBrains Mono with tabular numerals. Never set a paragraph in mono.
 
-**The 11px Floor Rule.** No functional text renders below 11px at any breakpoint. Micro-labels keep their tracking but not their tininess.
+**The 11px Floor Rule.** No functional text renders below 11px at any breakpoint; nothing functional may reuse the 0.55em/.82em relative sizes, which are reserved for the slot-code badge (decorative, sized against its heading) and the inline source link inside body copy.
+
+**The Fixed Ramp Rule.** Sizes come from the documented ramp. A new component reuses a step or the ramp gains that step on purpose — never a one-off literal.
 
 ## Layout
 
@@ -159,6 +226,8 @@ The system is flat at rest and layered tonally: depth comes from a three-step gr
 - **Hover lift small** (`box-shadow: 0 10px 24px -18px rgba(0,0,0,.8)`): skill nodes.
 
 ### Named Rules
+**The Neutral-Lift Rule.** Hover elevation is a black, offset, blurred shadow plus a 2–3px translate. A zero-offset coloured ring is decoration, not depth.
+
 **The No-Glow Rule.** Shadows are black, offset, and blurred. A zero-offset coloured halo is never a depth signal in this system, even at low opacity. (Adopted after the first build shipped a gold glow and the mechanical detector flagged it.)
 
 ## Shapes
@@ -174,10 +243,10 @@ Borders are 1px everywhere. Dashed borders are meaningful, not decorative: they 
 - **Primary:** gold fill with near-black text; used for the single strongest action in context (View Work, Open Live).
 - **Ghost:** transparent fill, edge border, text-coloured; used for the secondary action (Contact, Source).
 - **GitHub:** panel-raised fill with a 22px inline SVG mark; the only control in Contact.
-- **Hover / Focus:** translateY(-2px), neutral black shadow, border shifts to the accent. Focus-visible uses a 2px gold outline with 3px offset.
+- **Hover / Focus:** translateY(-2px), neutral black shadow, border shifts to the accent — never a zero-offset coloured ring. Focus-visible uses a 2px gold outline with 3px offset.
 
 ### Chips
-- **Style:** ground-2 fill, 1px edge border, mono 0.74rem, no radius (rectangular), uppercase-free.
+- **Style:** ground-2 fill, 1px edge border, mono 0.75rem, no radius (rectangular), uppercase-free.
 - **State:** static; chips are labels, never controls. Interactive chips do not exist in this system.
 
 ### Cards / Containers
@@ -208,12 +277,14 @@ A mono uppercase label with a solid 7px square swatch drawn in `currentColor`. T
 - **Do** keep panel padding binary: 26px desktop, 18px mobile.
 - **Do** let the loadout strip cross the fold — the work leads the first viewport.
 - **Do** pair every hover lift with a black shadow and a 2–3px translate.
+- **Do** set tier text from the text ramp (#9aa5b6 for sealed, 7.9:1 minimum); reserve #66707f for borders and swatch fills.
 
 ### Don't:
 - **Don't** use a saturated colour as a large field. Gold is the single exception and only on legendary surfaces.
 - **Don't** fake a live link for a sealed project; a dashed grey slot with "SEGERA" is the correct and final answer.
 - **Don't** introduce border-radius — every curve is a notch.
 - **Don't** use emoji, Unicode glyphs, or icon fonts as icons; the solid square swatch and inline SVG are the whole icon system.
-- **Don't** apply a coloured glow shadow, even as a hover affordance.
+- **Don't** apply a coloured glow shadow or zero-offset coloured ring, even as a hover affordance.
+- **Don't** set functional text in #66707f (computed 3.9:1 on the ground, 3.3:1 on the SEGERA capsule blend — under the 4.5:1 floor).
 - **Don't** dress the placeholder section in real-looking work: violet plus CONTOH plus an explicit "this is an example" line is the only permitted treatment.
 - **Don't** set body copy in monospace or below 11px.
